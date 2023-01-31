@@ -24,7 +24,6 @@ function getPackagesFromTestFile(testFileName)
 test('test `getPackages` on poetry file with no package dependencies', () => 
 {
     const packages = getPackagesFromTestFile('lockfile-with-no-package-dependencies');
-    console.log(packages);
     expect(packages.length).toBe(3);
 
     expect(packages[0].name).toBe('atomicwrites');

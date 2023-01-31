@@ -125,5 +125,45 @@ function createPackageFromTOMLTables(
  **/
 export default function getPackages(file_contents)
 {
-    return [];
+    var packages = [];
+
+    var toml_tables = file_contents.trim().split('\n\n');
+    var table_index = 0;
+
+    for (var table_index = 0; table_index < toml_tables.length; table_index++) {
+
+        if (toml_tables[table_index].startsWith('[[package]]')) {
+
+            var package_table = toml_tables[table_index];
+            var package_dependencies_table = null;
+            var package_extras_table = null;
+
+            // check to see if either of the next two toml sections contain
+            // package dependencies or package extras
+            for (var subtable_index = table_index
+               ; subtable_index < Math.min(table_index+2, toml_tables.length)
+               ; subtable_index++
+            ) {
+                if (toml_tables[subtable_index].startsWith('[package.dependencies]')) {
+                    package_dependencies_table = toml_tables[subtable_index];
+                    table_index++;
+                }
+
+                else if (toml_tables[subtable_index].startsWith('[package.extras]')) {
+                    package_extras_table = toml_tables[subtable_index];
+                    table_index++;
+                }
+
+                else { break };
+            }
+
+            packages.push(createPackageFromTOMLTables(
+                package_table,
+                package_dependencies_table,
+                package_extras_table
+            ));
+        }
+    }
+
+    return packages;
 }
