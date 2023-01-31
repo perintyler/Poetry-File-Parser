@@ -1,6 +1,11 @@
 /** 
  *   ParsePoetry.js
  *   --------------
+ * 
+ * This file provides the `getPackages` function, which parses
+ * `Package` objects from a Poetry lockfile.
+ * 
+ * Refer to the Poetry website: https://python-poetry.org/
  **/
 
 import Package from './Package.js';
@@ -105,4 +110,20 @@ function createPackageFromTOMLTables(
         package_dependency_names, 
         optional_dependency_names
     );
+}
+
+/**
+ * This function takes the plaintext contents of a Poetry lockfile,
+ * parses it, and then returns an array of `Package` objects representing
+ * each package detailed in the lockfile.
+ * 
+ * Example Poetry File: 
+ * - https://github.com/python-poetry/poetry/blob/70e8e8ed1da8c15041c3054603088fce59e05829/poetry.lock
+ * 
+ * See Poetry File reference: 
+ * - https://python-poetry.org/docs/basic-usage/
+ **/
+export default function getPackages(file_contents)
+{
+    return [];
 }
