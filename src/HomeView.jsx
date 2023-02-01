@@ -5,23 +5,7 @@ import Box                            from '@mui/material/Box';
 import Button                         from '@mui/material/Button';
 import PackageGrid                    from './PackageGrid';
 
-const NO_FILE_WARNING_BOX = (
-    <Box 
-      display="flex"
-      justifyContent="center" 
-      alignItems="center"
-      color="#86EFAB"
-      m={10}
-      p={5}
-      textAlign="center"
-      border={4}
-      borderLeft={0}
-      borderRight={0}
-      children={<h3>No Poetry File to display yet...</h3>}
-    />
-);
-
-const UPLOAD_BUTTON_THEME = createTheme({
+const theme = createTheme({
     palette: {
         secondary: {
             dark:         "#A663CC",
@@ -53,10 +37,38 @@ function UploadButton({ title, onUpload })
         />
     );
 
-    return <ThemeProvider theme={UPLOAD_BUTTON_THEME}>{ uploadButton }</ThemeProvider>;
+    return <ThemeProvider theme={theme}>{ uploadButton }</ThemeProvider>;
 }
 
-export default function HomeView({ packages, onUpload })
+function NoUploadWarningBox({ useMockFile })
+{
+    const boxContents = (
+        <>
+            <h3>No Poetry file to display yet...</h3>
+            <Button onClick={useMockFile}>upload one for me</Button>
+
+        </>
+    );
+
+    return (
+        <Box 
+          display="flex"
+          justifyContent="center" 
+          alignItems="center"
+          flexDirection="column"
+          color="#86EFAB"
+          m={10}
+          p={5}
+          textAlign="center"
+          border={4}
+          borderLeft={0}
+          borderRight={0}
+          children={boxContents}
+        />
+    );
+}
+
+export default function HomeView({ packages, onUpload, useMockFile })
 {
     const buttonTitle = packages === null 
                       ? "Upload Poetry File" 
@@ -69,7 +81,7 @@ export default function HomeView({ packages, onUpload })
     );
 
     const fileView = (packages === null)
-                   ? (NO_FILE_WARNING_BOX) 
+                   ? (<NoUploadWarningBox useMockFile={useMockFile} />) 
                    : (<PackageGrid packages={packages} />);
 
     const sizing = { margin: 1, height: '100%' };

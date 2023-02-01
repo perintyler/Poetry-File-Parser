@@ -57,7 +57,7 @@ function DependencyListItem({ name })
         />
     );
 
-    return <li children={dependency === null ? name : dependencyLink} />;
+    return <li children={dependency === null ? `${name} (optional)` : dependencyLink} />;
 }
 
 function DependenciesBox({ boxTitle, dependencyNames })
@@ -118,7 +118,7 @@ export default function PackageView()
             <PackageViewHeader pkg={pkg} />
 
             <DependenciesBox 
-              boxTitle="☝ Dependencies ☝" /* TODO: differentiate dependencies and optional dependencies */ 
+              boxTitle="☝ Dependencies ☝"
               dependencyNames={pkg.dependencyNames.concat(pkg.optionalDependencyNames)} 
             />
 

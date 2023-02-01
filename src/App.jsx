@@ -6,6 +6,7 @@ import HeaderBar                                  from './HeaderBar';
 import HomeView                                   from './HomeView';
 import PackageView                                from './PackageView';
 import { SuccessMessage, ErrorMessage }           from './Alerts';
+import { MOCKFILE_CONTENTS }                      from './MockData.jsx';
 import { getPackages, InvalidPoetryFileError }    from './api/ParsePoetry';
 
 export default class App extends React.Component
@@ -54,12 +55,18 @@ export default class App extends React.Component
         reader.readAsText(uploadEvent.target.files[0]);
     }
 
+    useMockPoetryFile()
+    {
+        this.setState({packages: getPackages(MOCKFILE_CONTENTS)});
+    }
+
     render() 
     {
         const homeView = (
             <HomeView 
               packages={this.state.packages} 
               onUpload={(event) => this.handleUpload(event)}
+              useMockFile={() => this.useMockPoetryFile()}
             />
         );
 
