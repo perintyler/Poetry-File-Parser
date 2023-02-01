@@ -78,7 +78,7 @@ function DependenciesBox({ boxTitle, dependencyNames })
     );
 }
 
-function PackageViewHeading({ pkg })
+function PackageViewHeader({ pkg })
 {
     const packageTitle = (
         <h1 style={{textAlign:"center", color: "#F26518"}}>
@@ -115,7 +115,7 @@ export default function PackageView()
     return (
         <PackageViewContainer>
 
-            <PackageViewHeading pkg={pkg} />
+            <PackageViewHeader pkg={pkg} />
 
             <DependenciesBox 
               boxTitle="☝ Dependencies ☝" /* TODO: differentiate dependencies and optional dependencies */ 

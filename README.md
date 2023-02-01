@@ -1,11 +1,12 @@
-# Poetry File Parser Website
+# Poetry File Parser
 
 This [React](https://reactjs.org/) web application allows users to upload a Python [Poetry](https://python-poetry.org/) dependency file, which gets parsed and visualized. The app displays a package grid, and clicking on a package will navigate to a package view showing clickable dependencies and reverse-dependencies, allowing users to click through the dependency tree.
 
 <center>
     <a href="http://wwww.poetry-parser.com">
-        <b>poetry-parser.com</b>
+        <b>www.poetry-parser.com</b>
     </a>
+    <br>
     <span>
         <img src="readme-assets/home-view-demo-screenshot.png" style="height: 600px; padding: 10px;" />
         <img src="readme-assets/package-view-demo-screenshot.png" style="height: 600px; padding: 10px;" />

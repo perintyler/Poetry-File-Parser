@@ -65,8 +65,7 @@ function createPackageFromTOMLTables(
             if (line.startsWith('name')) {
                 const name_matching_pattern = /name = "(.*)"/;
                 const regex_match = line.match(new RegExp(name_matching_pattern));
-                 // 0th index matches the whole pattern. we want the matched group
-                packageName = regex_match[1];
+                packageName = regex_match[1]; // 0th index matches the whole pattern. 1st index is matched group
             }
             else if (line.startsWith('description')) {
                 const description_matching_pattern = /description = "(.*)"/;
@@ -161,30 +160,30 @@ export function getPackages(file_contents)
 {
     var packages = [];
 
-    var toml_tables = file_contents.trim().split('\n\n');
+    var tomlTables = file_contents.trim().split('\n\n');
 
-    for (var table_index = 0; table_index < toml_tables.length; table_index++) {
+    for (var tableIndex = 0; tableIndex < tomlTables.length; tableIndex++) {
 
-        if (toml_tables[table_index].startsWith('[[package]]')) {
+        if (tomlTables[tableIndex].startsWith('[[package]]')) {
 
-            var package_table = toml_tables[table_index];
+            var package_table = tomlTables[tableIndex];
             var package_dependencies_table = null;
             var package_extras_table = null;
 
             // check to see if either of the next two toml sections contain
             // package dependencies or package extras
-            for (var subtable_index = table_index+1
-               ; subtable_index < Math.min(table_index+3, toml_tables.length)
-               ; subtable_index++
+            for (var subtableIndex = tableIndex+1
+               ; subtableIndex < Math.min(tableIndex+3, tomlTables.length)
+               ; subtableIndex++
             ) {
-                if (toml_tables[subtable_index].startsWith('[package.dependencies]')) {
-                    package_dependencies_table = toml_tables[subtable_index];
-                    table_index++;
+                if (tomlTables[subtableIndex].startsWith('[package.dependencies]')) {
+                    package_dependencies_table = tomlTables[subtableIndex];
+                    tableIndex++;
                 }
 
-                else if (toml_tables[subtable_index].startsWith('[package.extras]')) {
-                    package_extras_table = toml_tables[subtable_index];
-                    table_index++;
+                else if (tomlTables[subtableIndex].startsWith('[package.extras]')) {
+                    package_extras_table = tomlTables[subtableIndex];
+                    tableIndex++;
                 }
 
                 else { break };
