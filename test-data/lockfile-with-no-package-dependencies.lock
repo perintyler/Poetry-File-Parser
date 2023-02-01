@@ -19,5 +19,5 @@ name = "cachecontrol"
 version = "0.12.11"
 description = "httplib2 caching for requests"
 category = "main"
-optional = false
+optional = true
 python-versions = ">=3.6"
