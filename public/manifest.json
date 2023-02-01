@@ -1,7 +1,7 @@
 {
   "short_name": "Poetry Parser",
-  "name": "Poetry Dependency File Parser",
+  "name": "Python Poetry File Parser",
   "icons": [],
   "start_url": ".",
-  "display": "standalone",
+  "display": "standalone"
 }
