@@ -70,6 +70,8 @@ export default class App extends React.Component
             />
         );
 
+        const packageView = <PackageView data-testid="package-view" />;
+
         const routes = (
             <Routes>
                 <Route 
@@ -78,7 +80,7 @@ export default class App extends React.Component
                 />
                 <Route 
                   path="/package" 
-                  element={<PackageView />} 
+                  element={packageView} 
                 />
             </Routes>
         );

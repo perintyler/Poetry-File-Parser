@@ -115,11 +115,12 @@ export default function PackageView()
     return (
         <PackageViewContainer>
 
-            <PackageViewHeader pkg={pkg} />
+            <PackageViewHeader pkg={pkg} data-testid="package-view-header" />
 
             <DependenciesBox 
               boxTitle="☝ Dependencies ☝"
               dependencyNames={pkg.dependencyNames.concat(pkg.optionalDependencyNames)} 
+              data-testid="package-view-dependency-box"
             />
 
             <Divider />
@@ -127,6 +128,7 @@ export default function PackageView()
             <DependenciesBox 
               boxTitle="👇 Reverse Dependencies👇" 
               dependencyNames={pkg.reverseDependencyNames} 
+              data-testid="package-view-reverse-dependency-box"
             />
 
         </PackageViewContainer>

@@ -16,7 +16,8 @@ function PackageLink({ pkg })
 function PackageGridItem({ pkg })
 {
     return (
-        <Grid item 
+        <Grid item
+          data-testid="package-grid-item"
           display="flex"
           alignItems="center"
           justifyContent="center" 

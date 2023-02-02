@@ -22,7 +22,7 @@ function UploadButton({ title, onUpload })
     const lockfileInput = (
         <div> 
             {title}
-            <input hidden accept=".lock" type="file" onChange={onUpload} /> 
+            <input hidden accept=".lock" type="file" onChange={onUpload} data-testid="lockfile-input" /> 
         </div>
     );
 
@@ -45,8 +45,11 @@ function NoUploadWarningBox({ useMockFile })
     const boxContents = (
         <>
             <h3>No Poetry file to display yet...</h3>
-            <Button onClick={useMockFile}>upload one for me</Button>
-
+            <Button 
+              onClick={useMockFile} 
+              data-testid="auto-upload-button"
+              children="upload one for me"
+            />
         </>
     );
 
