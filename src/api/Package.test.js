@@ -1,6 +1,7 @@
 /* Package.test.js */
 
-import Package from './Package.js';
+import { test, expect } from '@jest/globals';
+import Package          from './Package.js';
 
 test('test `Package` construction', () => {
     const dependencyNames = ['first-required-dependency', 'second-required-dependecy'];
@@ -16,14 +17,14 @@ test('test `Package` construction', () => {
     expect(pkg.optionalDependencyNames[0]).toBe('an-optional-dependency');
 });
 
-test('test static class member containing every constructed package', () => {
+test('test that every package is stored in `Package.all` upon construction', () => {
     if (Package.all) { Package.all = {} } // clear packages from already ran tests
 
-    const pkg1 = new Package('Package 1', 'package 1 description', false, [], []);
-    const pkg2 = new Package('Package 2', 'package 2 description', false, [], []);
-    const pkg3 = new Package('Package 3', 'package 3 description', false, [], []);
-    const pkg4 = new Package('Package 4', 'package 4 description', false, [], []);
-    const pkg5 = new Package('Package 5', 'package 5 description', false, [], []);
+    new Package('Package 1', 'package 1 description', false, [], []);
+    new Package('Package 2', 'package 2 description', false, [], []);
+    new Package('Package 3', 'package 3 description', false, [], []);
+    new Package('Package 4', 'package 4 description', false, [], []);
+    new Package('Package 5', 'package 5 description', false, [], []);
 
     expect(Object.keys(Package.all).length).toBe(5);
 
@@ -36,9 +37,10 @@ test('test static class member containing every constructed package', () => {
     });
 });
 
-test('test Package::getDependencies', () => {
-});
-
-test('test Package::getReverseDepencies', () => {
+test('test the static `Package::getByName` function', () => {
+    const pkg1 = new Package('Package 1', 'package 1 description', false, [], []);
+    const pkg2 = new Package('Package 2', 'package 2 description', false, [], []);
+    expect(Package.getByName('Package 1')).toBe(pkg1);
+    expect(Package.getByName('Package 2')).toBe(pkg2);
 });
 
