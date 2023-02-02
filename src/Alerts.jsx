@@ -41,7 +41,7 @@ function Alert({ severity, message, onClose })
 
 Alert.propTypes = {
     severity: PropTypes.string.isRequired, // success, error, info, warning
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string,
     onClose: PropTypes.func.isRequired
 };
 
@@ -51,7 +51,7 @@ export function SuccessMessage({ message, onClose })
 }
 
 SuccessMessage.propTypes = {
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string,
     onClose: PropTypes.func.isRequired
 };
 
@@ -61,7 +61,7 @@ export function ErrorMessage({ message, onClose })
 }
 
 ErrorMessage.propTypes = {
-    message: PropTypes.string.isRequired,
+    message: PropTypes.string,
     onClose: PropTypes.func.isRequired
 };
 
