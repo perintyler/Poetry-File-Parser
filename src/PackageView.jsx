@@ -1,10 +1,10 @@
 /* PackageView.jsx */
 
-import { Link, useLocation } from 'react-router-dom';
-import PropTypes             from 'prop-types';
-import Box                   from '@mui/material/Box';
-import Divider               from '@mui/material/Divider';
-import Package               from './api/Package';
+import { Link, useLocation, Navigate } from 'react-router-dom';
+import PropTypes                       from 'prop-types';
+import Box                             from '@mui/material/Box';
+import Divider                         from '@mui/material/Divider';
+import Package                         from './api/Package';
 
 function GoBackButton()
 {
@@ -44,33 +44,48 @@ function PackageViewContainer(props)
     );
 }
 
-function DependencyListItem({ name })
+function DependencyListItem({ name, isOptional })
 {
-    const dependency = Package.getByName(name);
+    var listItemBody;
 
-    const dependencyLink = (
-        <Link 
-          to="/package" 
-          state={{ pkg: dependency }} 
-          children={name}
-          style={{color: 'white', fontSize: '1.2em'}}
-        />
-    );
+    if (isOptional) {
+        listItemBody = `${name} (optional)`;
+    } else {
+        const dependency = Package.getByName(name);
 
-    return <li children={dependency === null ? `${name} (optional)` : dependencyLink} />;
+        // dependency will only be null if a required dependency doesn't
+        // have its own `[[Package]]` table, which would only happen for
+        // invalid Poetry files. Regardless, check if the value is null
+        // anyways to make the application more durable. 
+        console.assert(dependency !== null);
+        listItemBody = dependency === null ? name : (
+            <Link 
+              to="/package" 
+              state={{ pkg: dependency }} 
+              children={name}
+              style={{color: 'white', fontSize: '1.2em'}}
+            />
+        );
+    }
+
+    return <li children={listItemBody} />;
 }
 
 DependencyListItem.propTypes = {
-    name: PropTypes.string.isRequired
+    name: PropTypes.string.isRequired,
+    isOptional: PropTypes.bool.isRequired
 };
 
-function DependenciesBox({ boxTitle, dependencyNames })
+function DependenciesBox({ boxTitle, dependencyNames, optionalDependencyNames })
 {
-    if (dependencyNames.length === 0) { return <Box />; }
+    if ((dependencyNames.length + optionalDependencyNames.length) === 0) { 
+        return <Box />; 
+    }
 
     const dependencyList = (
         <ul>
-            {dependencyNames.map((name) => <DependencyListItem name={name} key={name}/>)}
+        {dependencyNames.map((name) => <DependencyListItem name={name} isOptional={false} key={name}/>)}
+        {optionalDependencyNames.map((name) => <DependencyListItem name={name} isOptional={true} key={name}/>)}
         </ul>
     );
 
@@ -84,8 +99,13 @@ function DependenciesBox({ boxTitle, dependencyNames })
 
 DependenciesBox.propTypes = {
     boxTitle: PropTypes.string.isRequired,
-    dependencyNames: PropTypes.arrayOf(PropTypes.string).isRequired
+    dependencyNames: PropTypes.arrayOf(PropTypes.string).isRequired,
+    optionalDependencyNames: PropTypes.arrayOf(PropTypes.string)
 };
+
+DependenciesBox.defaultProps = {
+    optionalDependencyNames: []
+}
 
 function PackageViewHeader({ pkg })
 {
@@ -125,6 +145,13 @@ export default function PackageView()
     const location = useLocation();
     const { pkg } = location.state;
 
+    // this only happens when a user navigates to a different domain,
+    // then navigates back to the '/package' route 
+    if (pkg === undefined || pkg === null || Object.keys(Package.all).length === 0) 
+    {
+        return <Navigate to="/" />;
+    }
+
     console.assert(typeof pkg === 'object');
 
     return (
@@ -136,7 +163,8 @@ export default function PackageView()
 
             <DependenciesBox 
               boxTitle="☝ Dependencies ☝"
-              dependencyNames={pkg.dependencyNames.concat(pkg.optionalDependencyNames)} 
+              dependencyNames={pkg.dependencyNames} 
+              optionalDependencyNames={pkg.optionalDependencyNames}
               data-testid="package-view-dependency-box"
             />
 
@@ -144,7 +172,7 @@ export default function PackageView()
 
             <DependenciesBox 
               boxTitle="👇 Reverse Dependencies👇" 
-              dependencyNames={pkg.reverseDependencyNames} 
+              dependencyNames={pkg.reverseDependencyNames}
               data-testid="package-view-reverse-dependency-box"
             />
 
