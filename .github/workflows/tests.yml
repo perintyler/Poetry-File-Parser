@@ -1,4 +1,4 @@
-name: Poetry File Parser CI Tests
+name: Jest Tests
 on: [push]
 jobs:
   tests:
