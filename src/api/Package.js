@@ -1,9 +1,4 @@
-/** 
- *   Package.js
- *   ----------
- * 
- * This file provides the `Package` class.
- **/
+/* Package.js */
 
 export default class Package 
 {

@@ -95,7 +95,11 @@ function createPackageFromTOMLTables(
             dependencyTableLines.shift(); // skip "[package.dependencies]" line
             dependencyTableLines.forEach((line) => {
                 const dependency_name = line.split(' = ')[0];
-                dependencyNames.push(dependency_name);
+                if (line.includes('optional = true')) {
+                    optionalDependencyNames.push(dependency_name);
+                } else {
+                    dependencyNames.push(dependency_name);
+                }
             });
         }
     })();
@@ -186,7 +190,7 @@ export function getPackages(file_contents)
                     tableIndex++;
                 }
 
-                else { break };
+                else { break }
             }
 
             packages.push(createPackageFromTOMLTables(
