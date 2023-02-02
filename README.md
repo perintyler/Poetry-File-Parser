@@ -4,7 +4,7 @@ This [React](https://reactjs.org/) Web-App parses [Poetry](https://python-poetry
 
 <p align="center">
      <br>
-    <a href="http://www.poetryparser.com">
+    <a href="https://poetryparser.com/">
         <b>PoetryParser.com</b>
     </a>
     <br><br><br>
