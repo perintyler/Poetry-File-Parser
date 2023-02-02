@@ -1,6 +1,7 @@
 /* PackageView.jsx */
 
 import { Link, useLocation } from 'react-router-dom';
+import PropTypes             from 'prop-types';
 import Box                   from '@mui/material/Box';
 import Divider               from '@mui/material/Divider';
 import Package               from './api/Package';
@@ -59,6 +60,10 @@ function DependencyListItem({ name })
     return <li children={dependency === null ? `${name} (optional)` : dependencyLink} />;
 }
 
+DependencyListItem.propTypes = {
+    name: PropTypes.string.isRequired
+};
+
 function DependenciesBox({ boxTitle, dependencyNames })
 {
     if (dependencyNames.length === 0) { return <Box />; }
@@ -76,6 +81,11 @@ function DependenciesBox({ boxTitle, dependencyNames })
         </Box>
     );
 }
+
+DependenciesBox.propTypes = {
+    boxTitle: PropTypes.string.isRequired,
+    dependencyNames: PropTypes.arrayOf(PropTypes.string).isRequired
+};
 
 function PackageViewHeader({ pkg })
 {
@@ -106,10 +116,16 @@ function PackageViewHeader({ pkg })
     );
 }
 
+PackageViewHeader.propTypes = {
+    pkg: PropTypes.object.isRequired,
+};
+
 export default function PackageView()
 {
     const location = useLocation();
     const { pkg } = location.state;
+
+    console.assert(typeof pkg === 'object');
 
     return (
         <PackageViewContainer>
