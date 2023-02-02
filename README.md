@@ -41,7 +41,9 @@ To create an optimized production build for distribution:
 npm run build
 ```
 
-## Testing
+## Development
+
+### Testing
 
 To run the [Jest](https://jestjs.io/) tests, use the `npm test` command.
 
@@ -57,3 +59,19 @@ Tests:       12 passed, 12 total
 Snapshots:   0 total
 Time:        2.322 s
 ```
+
+### Lint Checks
+
+To run the [ESLint](https://eslint.org/) checks:
+
+```bash
+npm run lint
+``` 
+
+### Continuous Integration
+
+In order for commits to be pushed to the `main` branch, a PR must be made and all CI workflows must succeed. There are currently 3 CI workflows:
+
+- `Jest Tests`
+- `Firebase Deployment`
+- `Lint Checks`
