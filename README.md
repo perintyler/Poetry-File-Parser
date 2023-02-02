@@ -1,6 +1,6 @@
 # Poetry File Parser
 
-This [React](https://reactjs.org/) web application allows users to upload a Python [Poetry](https://python-poetry.org/) dependency file, which gets parsed and visualized. The app displays a package grid, and clicking on a package will navigate to a package view showing clickable dependencies and reverse-dependencies, allowing users to click through the dependency tree.
+This [React](https://reactjs.org/) Web-App parses [Poetry](https://python-poetry.org/) dependency files.
 
 <p align="center">
      <br>
@@ -18,13 +18,16 @@ This [React](https://reactjs.org/) web application allows users to upload a Pyth
 
 ## Installation
 
-If not already done, install [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm). 
+__Requirements:__
+- [npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
 
-Then, install the app from within the root folder of this git repo using this command:
+Navigate into this repo's root directory, then run this bash command: 
 
 ```bash
 npm install
 ```
+
+## Building/Serving
 
 To run the app locally:
 
@@ -32,10 +35,25 @@ To run the app locally:
 npm start
 ```
 
-## Testing
-
-To run the [Jest](https://jestjs.io/) tests:
+To create an optimized production build for distribution:
 
 ```bash
-npm test
+npm run build
+```
+
+## Testing
+
+To run the [Jest](https://jestjs.io/) tests, use the `npm test` command.
+
+```bash
+$ npm test
+ PASS  src/api/Package.test.js
+ PASS  src/api/ParsePoetry.test.js
+ PASS  src/api/integration.test.js
+ PASS  src/App.test.jsx
+
+Test Suites: 4 passed, 4 total
+Tests:       12 passed, 12 total
+Snapshots:   0 total
+Time:        2.322 s
 ```
