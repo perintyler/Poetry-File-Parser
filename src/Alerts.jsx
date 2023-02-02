@@ -6,7 +6,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon  from '@mui/icons-material/Close';
 import MuiAlert   from '@mui/material/Alert';
 
-const ALERT_DURATION = 6000; // 10 seconds
+const ALERT_DURATION = 7000; // 7 seconds
 
 function Alert({ severity, message, onClose })
 {
