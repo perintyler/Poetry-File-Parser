@@ -55,7 +55,7 @@ export default class App extends React.Component
         reader.readAsText(uploadEvent.target.files[0]);
     }
 
-    useMockPoetryFile()
+    useMockData()
     {
         this.setState({packages: getPackages(MOCKFILE_CONTENTS)});
     }
@@ -63,10 +63,10 @@ export default class App extends React.Component
     render() 
     {
         const homeView = (
-            <HomeView 
+            <HomeView
               packages={this.state.packages} 
               onUpload={(event) => this.handleUpload(event)}
-              useMockFile={() => this.useMockPoetryFile()}
+              uploadDefaultFile={() => this.useMockData()}
             />
         );
 
@@ -97,12 +97,12 @@ export default class App extends React.Component
 
                 <SuccessMessage 
                   message={this.state.successMessage} 
-                  onClose={(e)=>this.setState({successMessage:null})} 
+                  onClose={() => this.setState({successMessage:null})} 
                 />
 
                 <ErrorMessage 
                   message={this.state.errorMessage} 
-                  onClose={(e)=>this.setState({errorMessage:null})} 
+                  onClose={() => this.setState({errorMessage:null})} 
                 />
             </>
         );
