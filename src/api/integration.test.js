@@ -8,7 +8,8 @@
 const fs   = require('fs');   // for synchronous file reading
 const path = require('path'); // for test file path construction
 
-import { getPackages } from './ParsePoetry.js';
+import { test, expect } from '@jest/globals';
+import { getPackages }  from './ParsePoetry.js';
 
 test('trivial integration test', () => {
     for (var testNumber = 0; testNumber < 10; testNumber++) {
