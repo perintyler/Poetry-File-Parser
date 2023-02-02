@@ -78,7 +78,9 @@ DependencyListItem.propTypes = {
 
 function DependenciesBox({ boxTitle, dependencyNames, optionalDependencyNames })
 {
-    if (dependencyNames.length === 0) { return <Box />; }
+    if ((dependencyNames.length + optionalDependencyNames.length) === 0) { 
+        return <Box />; 
+    }
 
     const dependencyList = (
         <ul>
