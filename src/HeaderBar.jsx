@@ -18,7 +18,7 @@ function SVGLink({ icon, link, size })
 }
 
 SVGLink.propTypes = {
-    icon: PropTypes.element.isRequired,
+    icon: PropTypes.object.isRequired,
     link: PropTypes.string.isRequired,
     size: PropTypes.string.isRequired // "small", "medium", or "large"
 };
