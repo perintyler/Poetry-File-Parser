@@ -46,7 +46,7 @@ export default function PackageGrid({ packages })
 {
     return (
         <NavigationGrid
-          justifyContent="flex-start" 
+          justifyContent="center" 
           alignItems="flex-start"
           mt={2} 
           spacing={0}
