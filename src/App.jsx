@@ -1,6 +1,6 @@
 /* App.jsx */
 
-import { Routes, Route, BrowserRouter as Router } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import React                                      from 'react';
 import HeaderBar                                  from './HeaderBar';
 import HomeView                                   from './HomeView';
@@ -82,6 +82,10 @@ export default class App extends React.Component
                   path="/package" 
                   element={packageView} 
                 />
+                <Route
+                  path="*"
+                  element={<Navigate to="/" />}
+                />
             </Routes>
         );
 
@@ -89,7 +93,7 @@ export default class App extends React.Component
             <>
                 <HeaderBar />
 
-                <Router children={routes} />
+                <BrowserRouter children={routes} />
 
                 <SuccessMessage 
                   message={this.state.successMessage} 
