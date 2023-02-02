@@ -4,8 +4,8 @@ This [React](https://reactjs.org/) web application allows users to upload a Pyth
 
 <p align="center">
      <br>
-    <a href="http://wwww.poetry-parser.com">
-        <b>www.poetry-parser.com</b>
+    <a href="http://www.poetryparser.com">
+        <b>PoetryParser.com</b>
     </a>
     <br><br><br>
     <span>
