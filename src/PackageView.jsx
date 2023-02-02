@@ -5,7 +5,7 @@ import Box                   from '@mui/material/Box';
 import Divider               from '@mui/material/Divider';
 import Package               from './api/Package';
 
-function GoBackButton(props)
+function GoBackButton()
 {
     return (
         <Link to="/" style={{ textDecoration: 'none', textColor:"#F26518" }}>
@@ -21,9 +21,8 @@ function GoBackButton(props)
               align="center" 
               height={60}
               color="#F26518"
-            >
-                Go Back to Package Grid
-            </Box>
+              children="Go Back to Package Grid"
+            />
         </Link>
     );
 }
@@ -71,7 +70,7 @@ function DependenciesBox({ boxTitle, dependencyNames })
     );
 
     return (
-        <Box color="#D0D4FC" pt={1}>
+        <Box color="#D0D4FC" pb={1}>
             <h2 style={{fontSize:'1.7em'}}> {boxTitle} </h2>
             <Box ml={1}>{dependencyList}</Box>
         </Box>
@@ -87,8 +86,8 @@ function PackageViewHeader({ pkg })
     );
 
     const packageDescription = (
-        <h4 pb={4} style={{textAlign:"center", color: "#A663CC"}}>
-            "{pkg.description}"
+        <h4 style={{textAlign:"center", color: "#A663CC"}}>
+            {'"' + pkg.description + '"'}
         </h4>
     );
 
@@ -96,10 +95,10 @@ function PackageViewHeader({ pkg })
         <Box 
           alignItems="center" 
           backgroundColor="#10172A" 
-          padding="5%" 
-          width="70%" 
-          margin="5%"
-          marginBottom={0}
+          padding="2%" 
+          width="65%" 
+          margin="12.5%"
+          marginBottom={3}
           marginTop={0}
           borderRadius={3}
           children={<>{packageTitle}{packageDescription}</>}
@@ -117,6 +116,8 @@ export default function PackageView()
 
             <PackageViewHeader pkg={pkg} data-testid="package-view-header" />
 
+            <Divider />
+
             <DependenciesBox 
               boxTitle="☝ Dependencies ☝"
               dependencyNames={pkg.dependencyNames.concat(pkg.optionalDependencyNames)} 
@@ -130,6 +131,7 @@ export default function PackageView()
               dependencyNames={pkg.reverseDependencyNames} 
               data-testid="package-view-reverse-dependency-box"
             />
+
 
         </PackageViewContainer>
     );
