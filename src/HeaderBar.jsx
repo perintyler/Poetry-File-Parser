@@ -19,12 +19,14 @@ function SVGLink({ icon, link, size })
 function WebsiteTitleGridItem(props)
 {
     const websiteTitle = (
-        <Typography 
-          variant="h6" 
-          component="span" 
-          pb='2px'
-          children="Poetry File Parser"
-        />
+        <a href="https://PoetryParser.com" style={{ textDecoration: 'none', color:'white'}}>
+            <Typography 
+              variant="h6" 
+              component="span" 
+              pb='2px'
+              children="Poetry File Parser"
+            />
+        </a>
     );
 
     return (
