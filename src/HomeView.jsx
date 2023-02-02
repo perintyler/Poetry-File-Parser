@@ -40,13 +40,13 @@ function UploadButton({ title, onUpload })
     return <ThemeProvider theme={theme}>{ uploadButton }</ThemeProvider>;
 }
 
-function NoUploadWarningBox({ useMockFile })
+function NoUploadYetView({ uploadDefaultFile })
 {
     const boxContents = (
         <>
             <h3>No Poetry file to display yet...</h3>
             <Button 
-              onClick={useMockFile} 
+              onClick={uploadDefaultFile} 
               data-testid="auto-upload-button"
               children="upload one for me"
             />
@@ -71,7 +71,7 @@ function NoUploadWarningBox({ useMockFile })
     );
 }
 
-export default function HomeView({ packages, onUpload, useMockFile })
+export default function HomeView({ packages, onUpload, uploadDefaultFile })
 {
     const buttonTitle = packages === null 
                       ? "Upload Poetry File" 
@@ -84,7 +84,7 @@ export default function HomeView({ packages, onUpload, useMockFile })
     );
 
     const fileView = (packages === null)
-                   ? (<NoUploadWarningBox useMockFile={useMockFile} />) 
+                   ? (<NoUploadYetView uploadDefaultFile={uploadDefaultFile} />) 
                    : (<PackageGrid packages={packages} />);
 
     const sizing = { margin: 1, height: '100%' };
