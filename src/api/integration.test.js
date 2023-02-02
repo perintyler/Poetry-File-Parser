@@ -5,8 +5,8 @@
  * Mimimalistic integration tests for poetry file parsing.
  **/
 
-const fs   = require('fs');   // for synchronous file reading
-const path = require('path'); // for test file path construction
+import * as fs   from 'fs';   // for synchronous file reading
+import * as path from 'path'; // for test file path construction
 
 import { test, expect } from '@jest/globals';
 import { getPackages }  from './ParsePoetry.js';
