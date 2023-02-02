@@ -105,7 +105,7 @@ export default function HomeView({ packages, onUpload, uploadDefaultFile })
 }
 
 HomeView.propTypes = {
-    packages: PropTypes.arrayOf(PropTypes.instanceOf(Package)).isRequired,
+    packages: PropTypes.arrayOf(PropTypes.instanceOf(Package)),
     onUpload: PropTypes.func.isRequired,
     uploadDefaultFile: PropTypes.func.isRequired
 };
