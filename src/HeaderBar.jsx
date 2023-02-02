@@ -16,7 +16,7 @@ function SVGLink({ icon, link, size })
     );
 }
 
-function WebsiteTitleGridItem(props)
+function WebsiteTitleGridItem()
 {
     const websiteTitle = (
         <a href="https://PoetryParser.com" style={{ textDecoration: 'none', color:'white'}}>
@@ -40,7 +40,7 @@ function WebsiteTitleGridItem(props)
     );
 }
 
-function GithubIconGridItem(props)
+function GithubIconGridItem()
 {
     const githubSvg = (
         <SVGLink 
@@ -59,7 +59,7 @@ function GithubIconGridItem(props)
     );
 }
 
-function PoetryIconGridItem(props)
+function PoetryIconGridItem()
 {
     const poetrySvg = (
         <SVGLink
