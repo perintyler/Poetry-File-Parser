@@ -1,10 +1,10 @@
 /* PackageView.jsx */
 
-import { Link, useLocation } from 'react-router-dom';
-import PropTypes             from 'prop-types';
-import Box                   from '@mui/material/Box';
-import Divider               from '@mui/material/Divider';
-import Package               from './api/Package';
+import { Link, useLocation, Navigate } from 'react-router-dom';
+import PropTypes                       from 'prop-types';
+import Box                             from '@mui/material/Box';
+import Divider                         from '@mui/material/Divider';
+import Package                         from './api/Package';
 
 function GoBackButton()
 {
@@ -142,6 +142,13 @@ export default function PackageView()
 {
     const location = useLocation();
     const { pkg } = location.state;
+
+    // this only happens when a user navigates to a different domain,
+    // then navigates back to the '/package' route 
+    if (pkg === undefined || pkg === null || Object.keys(Package.all).length === 0) 
+    {
+        return <Navigate to="/" />;
+    }
 
     console.assert(typeof pkg === 'object');
 
