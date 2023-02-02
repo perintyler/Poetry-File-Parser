@@ -1,0 +1,14 @@
+[[package]]
+name = "a super cool python package"
+version = "0.12.11"
+description = "distributed quantum cloud-based artificial intelligence with big data and other buzz words"
+
+[package.dependencies]
+dependency1 = {version = ">=0.9", optional = true, markers = "extra == \"extrapackage\""}
+dependency2 = ">=0.5.2"
+dependency3 = {optional = false}
+dependency4 = {optional = true}
+
+[package.extras]
+extra1 = ["version info"]
+extra2 = ["version info"]
