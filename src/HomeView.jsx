@@ -3,6 +3,8 @@
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import Box                            from '@mui/material/Box';
 import Button                         from '@mui/material/Button';
+import PropTypes                      from 'prop-types';
+import Package                        from './api/Package';
 import PackageGrid                    from './PackageGrid';
 
 const theme = createTheme({
@@ -40,6 +42,11 @@ function UploadButton({ title, onUpload })
     return <ThemeProvider theme={theme}>{ uploadButton }</ThemeProvider>;
 }
 
+UploadButton.propTypes = {
+    title: PropTypes.string.isRequired,
+    onUpload: PropTypes.func.isRequired
+};
+
 function NoUploadYetView({ uploadDefaultFile })
 {
     const boxContents = (
@@ -71,6 +78,11 @@ function NoUploadYetView({ uploadDefaultFile })
     );
 }
 
+NoUploadYetView.propTypes = {
+    uploadDefaultFile: PropTypes.func.isRequired
+};
+
+
 export default function HomeView({ packages, onUpload, uploadDefaultFile })
 {
     const buttonTitle = packages === null 
@@ -91,3 +103,10 @@ export default function HomeView({ packages, onUpload, uploadDefaultFile })
 
     return <Box sx={sizing}>{ uploadButtonBox }{ fileView }</Box>;
 }
+
+HomeView.propTypes = {
+    packages: PropTypes.arrayOf(PropTypes.instanceOf(Package)),
+    onUpload: PropTypes.func.isRequired,
+    uploadDefaultFile: PropTypes.func.isRequired
+};
+

@@ -2,6 +2,7 @@
 
 import { ReactComponent as PoetryIcon } from './svg/poetry-logo.svg';
 import { ReactComponent as GithubIcon } from './svg/github-logo.svg';
+import PropTypes                        from 'prop-types';
 import AppBar                           from '@mui/material/AppBar';
 import Typography                       from '@mui/material/Typography';
 import SvgIcon                          from '@mui/material/SvgIcon';
@@ -15,6 +16,12 @@ function SVGLink({ icon, link, size })
         </a>
     );
 }
+
+SVGLink.propTypes = {
+    icon: PropTypes.object.isRequired,
+    link: PropTypes.string.isRequired,
+    size: PropTypes.string.isRequired // "small", "medium", or "large"
+};
 
 function WebsiteTitleGridItem()
 {

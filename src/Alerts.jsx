@@ -1,6 +1,7 @@
 /* Alerts.jsx */
 
 import * as React from 'react';
+import PropTypes  from 'prop-types';
 import Snackbar   from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon  from '@mui/icons-material/Close';
@@ -38,13 +39,29 @@ function Alert({ severity, message, onClose })
     );
 }
 
+Alert.propTypes = {
+    severity: PropTypes.string.isRequired, // success, error, info, warning
+    message: PropTypes.string,
+    onClose: PropTypes.func.isRequired
+};
+
 export function SuccessMessage({ message, onClose })
 {
     return <Alert severity="success" message={message} onClose={onClose} />;
 }
 
+SuccessMessage.propTypes = {
+    message: PropTypes.string,
+    onClose: PropTypes.func.isRequired
+};
+
 export function ErrorMessage({ message, onClose })
 {
     return <Alert severity="error" message={message} onClose={onClose} />;
 }
+
+ErrorMessage.propTypes = {
+    message: PropTypes.string,
+    onClose: PropTypes.func.isRequired
+};
 

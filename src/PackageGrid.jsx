@@ -2,7 +2,9 @@
 
 import Typography from '@mui/material/Button';
 import Grid       from '@mui/material/Grid';
-import { Link }   from "react-router-dom";
+import { Link }   from 'react-router-dom';
+import PropTypes  from 'prop-types';
+import Package    from './api/Package';
 
 function PackageLink({ pkg })
 {
@@ -12,6 +14,10 @@ function PackageLink({ pkg })
         </Link>
     );
 }
+
+PackageLink.propTypes = {
+    pkg: PropTypes.instanceOf(Package).isRequired,
+};
 
 function PackageGridItem({ pkg })
 {
@@ -32,6 +38,10 @@ function PackageGridItem({ pkg })
         />
     );
 }
+
+PackageGridItem.propTypes = {
+    pkg: PropTypes.instanceOf(Package).isRequired,
+};
 
 function NavigationGrid(props)
 {
@@ -54,3 +64,8 @@ export default function PackageGrid({ packages })
         />
     );
 }
+
+PackageGrid.propTypes = {
+    packages: PropTypes.arrayOf(PropTypes.instanceOf(Package)).isRequired
+};
+
