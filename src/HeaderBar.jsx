@@ -44,7 +44,7 @@ function GithubIconGridItem(props)
         <SVGLink 
           icon={GithubIcon} 
           size="small" 
-          link="https://github.com/perintyler" // TODO: replace with repo link
+          link="https://github.com/perintyler/Poetry-File-Parser"
         />
     );
 

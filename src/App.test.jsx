@@ -17,7 +17,7 @@ test('renders app bar and its links', () => {
     const links = screen.getAllByRole("link");
     expect(links.length).toBe(2);
     const githubLink = links[0];
-    expect(githubLink).toHaveAttribute('href', 'https://github.com/perintyler');
+    expect(githubLink).toHaveAttribute('href', 'https://github.com/perintyler/Poetry-File-Parser');
     expect(isElementOfType(githubLink.firstChild, 'svg'));
     const poetryLink = links[1];
     expect(poetryLink).toHaveAttribute('href', 'https://python-poetry.org/');
